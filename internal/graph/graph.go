@@ -25,6 +25,7 @@ import (
 	"github.com/jordanknott/taskcafe/internal/logger"
 	"github.com/jordanknott/taskcafe/internal/utils"
 	log "github.com/sirupsen/logrus"
+	"github.com/vektah/gqlparser/v2/ast"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 )
 
@@ -181,10 +182,10 @@ func NewHandler(repo db.Repository, appConfig config.AppConfig, jobQueue jobs.Jo
 	srv.AddTransport(transport.POST{})
 	srv.AddTransport(transport.MultipartForm{})
 
-	srv.SetQueryCache(lru.New(1000))
+	srv.SetQueryCache(lru.New[*ast.QueryDocument](1000))
 
 	srv.Use(extension.AutomaticPersistedQuery{
-		Cache: lru.New(100),
+		Cache: lru.New[string](100),
 	})
 	if isProd := os.Getenv("PRODUCTION") == "true"; isProd {
 		srv.Use(extension.FixedComplexityLimit(10))
