@@ -5,7 +5,7 @@ COPY frontend .
 RUN yarn install
 RUN yarn build
 
-FROM golang:1.14.5-alpine as backend
+FROM golang:1.26-alpine as backend
 WORKDIR /usr/src/app
 COPY go.mod go.mod
 COPY go.sum go.sum
