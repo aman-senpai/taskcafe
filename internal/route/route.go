@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/RichardKnop/machinery/v1"
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-redis/redis/v8"
 	"github.com/jmoiron/sqlx"
