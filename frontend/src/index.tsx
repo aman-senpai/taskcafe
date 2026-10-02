@@ -17,9 +17,9 @@ import remote from 'loglevel-plugin-remote';
 import cache from './App/cache';
 import App from './App';
 
-if (process.env.REACT_APP_NODE_ENV === 'production') {
+if (import.meta.env.VITE_NODE_ENV === 'production') {
   remote.apply(log, { format: remote.json });
-  switch (process.env.REACT_APP_LOG_LEVEL) {
+  switch (import.meta.env.VITE_LOG_LEVEL) {
     case 'info':
       log.setLevel(log.levels.INFO);
       break;
